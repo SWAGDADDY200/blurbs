@@ -1,0 +1,17 @@
+<div class="">
+  <h1 class="fs-2 fw-bold">
+
+  <%= link_to blurb.user.name, blurb.user, class: 'nav-link' %>
+
+  <% if blurb.picture.attached? %>          
+    <%= image_tag(blurb.picture, style:'width:1500px; height:400px' ) %>
+  <% end %> 
+
+  <p class="post fs-4"> BLURBER:<%= blurb.body %></p>
+
+ <% if  blurb.body%>
+  <%= button_to " Discard ", blurb_path(blurb), method: :delete, class: 'btn btn-outline-danger' %>
+  <%= button_to "COMMENT", new_comment_path, method: :get, class: "btn btn-outline-info" %>
+ <% end%>
+</div>
+

@@ -1,0 +1,18 @@
+<%= form_with(model: blurb ) do |b| %>
+
+  <div class="form-input">
+    <%= b.label :body %>
+    <%= b.rich_text_area :body, class:'form-control' %>
+  </div>
+
+
+  <div class='mb-3 mt-4p'>
+    <%= b.submit 'Add Post', class: "btn btn-outline-success mb-5 mt-5" %>
+  </div>
+
+  <div class="field mt-5">
+    <%= b.label :picture %>
+    <p>Add pictures here</p><%= b.file_field :picture %>
+  </div>
+
+<% end %>

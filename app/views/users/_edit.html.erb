@@ -1,0 +1,41 @@
+<%= form_with(model: @user ) do |q| %>
+
+  
+  <%= q.label :name %>
+  <%= q.text_field :name, class: 'my-4' %>
+<br>
+
+  <%= q.label :email %>
+  <%= q.email_field :email, class: 'form-control' %>
+
+  <%= q.label :password %>
+  <%= q.password_field :password, class: 'form-control' %>
+
+  <%= q.label :password_confirmation, "Confirmation" %>
+  <%= q.password_field :password_confirmation, class: 'form-control' %>
+
+  <%= q.label :bio %>
+  <%= q.rich_text_area :bio, class:'form-control' %>
+
+  <%= q.label :location %>
+  <%= q.text_field :location, class:'my-5' %>
+
+  <%# <%= q.label :birthday %> %>
+  <%# <%= q.date_field :birthday, class:'my-5' %>   %>
+
+  <div class="field mt-5">
+    <%= q.label :image %>
+    <p>Change profile pic</p><%= q.file_field :image %>
+  </div>
+  <br>
+
+  <div class="field mt-5">
+    <%= q.label :banner %>
+    <p>Choose a banner pic</p><%= q.file_field :banner %>
+  </div>
+  <br>
+
+
+  <%= q.submit "Save changes", class: "btn btn-outline-warning" %>
+
+<% end %>

@@ -1,0 +1,27 @@
+ <%# If the user has a banner pic, it will be posted %>
+ <% if @current_user.banner.attached? %>
+    <%= image_tag @current_user.banner, style:'width:1500px; height:400px'%>
+  <% end %>
+
+<%# If the user has a profile pic, it will be posted %>
+  <% if @current_user.image.attached? %>
+    <%= image_tag @current_user.image, class: "img-fluid img-avatar rounded-circle ",  style:'width:200px; height:200px' %>
+  <% end %>
+
+  <%= @current_user.name %>
+
+  <%= @current_user.blurbs.size %>
+
+  <%= @current_user.username %>
+
+  <%= @current_user.location %>
+
+  <%# <%= @current_user.birthday %> 
+
+    <h1>Edit your profile <%= button_to "Edit Profile ", edit_user_path(current_user), method: :get, class: 'btn btn-outline-info' %></h1>
+</div>
+
+<%# To see all post %>
+<%= @current_user.blurbs.all%>
+
+

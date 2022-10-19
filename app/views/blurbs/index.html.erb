@@ -1,0 +1,11 @@
+INDEX
+
+<div class='text-center'>
+  <% if @blurbs.any? %>
+    <%# <%= render @posts %> 
+    <%= render partial: "blurb", collection: @blurbs %>
+  <% else %>
+    <p>Sorry no BLURBS here, but why not create one</p>
+    <%= button_to "Create Blurb!", '/blurbs/new', method: :get, class: 'btn btn-info' %>
+  <% end %>
+</div>

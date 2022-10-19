@@ -1,0 +1,48 @@
+<%= form_with(model: user) do |f| %>
+
+
+  <div class="form-input my-3">
+    <%= f.label :name %>
+    <br>
+    <%= f.text_field :name, class: 'text-center', placeholder: ""%>
+  </div> 
+  
+  <div class="form-input my-3">
+    <%= f.label :username %>
+    <br>
+    <%= f.text_field :username, class: 'text-center', placeholder: ""%>
+  </div>
+  
+  <div class="form-input my-3">
+    <%= f.label :email %>
+    <br>
+    <%= f.email_field :email, class:'' %>
+  </div>
+  
+  <div class="form-input my-3">
+    <%= f.label :password %>
+    <br>
+    <%= f.password_field :password, class:'' %>
+  </div>
+  
+  <div class="form-input my-3">
+    <%= f.label :password_confirmation %>
+    <br>
+    <%= f.password_field :password_confirmation, class:'' %>
+  </div>
+
+  <div class="field  my-3">
+    <%= f.label :image %>
+    <p>Add Your Profile Picture</p> <%= f.file_field :image %>
+  </div>
+
+  <div class="field mt-5">
+    <%= f.label :banner %>
+    <p>Choose a banner pic</p><%= f.file_field :banner %>
+  </div>
+
+  <div class='my-3'>
+    <%= f.submit 'Create Account' %>
+  </div>
+  
+<% end %>

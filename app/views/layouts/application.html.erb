@@ -10,7 +10,43 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class='bg-white'>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">BLURBS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            
+        <% if current_user %>
+            Hi <%= current_user.name %>
+
+            <%= link_to "Sign Out", logout_path, data: {turbo_method: :delete}, class: 'nav-link mx-3' %>
+            <%= link_to "My profile", users_path(current_user), method: :get, class: 'nav-link mx-3' %>
+            <%= link_to "Create Blurb!", '/blurbs/new', method: :get, class: 'nav-link mx-3' %>
+            <%= link_to "Edit Profile ", edit_user_path(current_user), method: :get, class:'nav-link mx-3' %>
+
+
+        <% else %>
+          <%= link_to 'Log in', login_path, method: :get, class:'nav-link mx-3' %>
+
+          <%= link_to 'Sign up', new_user_path, method: :get, class:'nav-link mx-3' %>
+        <% end %>
+        <%= link_to 'Home', root_path, method: :get, class:'nav-link mx-3'%>
+            </div>
+          </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
     <%= yield %>
   </body>
 </html>

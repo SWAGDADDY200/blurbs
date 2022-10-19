@@ -1,0 +1,21 @@
+
+  <% if @user.banner.attached? %>@user is correct
+    <%= image_tag @user.banner, style:'width:1500px; height:400px'%>
+  <% end %>
+
+  <% if @user.image.attached? %>
+    <%= image_tag @user.image, class: "img-fluid img-avatar rounded-circle ",  style:'width:200px; height:200px' %>
+  <% end %>
+
+  <%= button_to 'FOLLOW', root_path, method: :get %>
+
+<div class='text-center'>
+  <h1>Name is: <%=@user.name %></h1>
+
+  <h1>Email is:<%= @user.email %> </h1>
+</div>
+
+  <h1>Edit your profile <%= button_to "Edit Profile ", edit_user_path(current_user), method: :get, class: 'btn btn-outline-info' %></h1>
+</div>
+
+
