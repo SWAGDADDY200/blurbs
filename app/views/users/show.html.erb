@@ -1,5 +1,7 @@
-
-  <% if @user.banner.attached? %>@user is correct
+<%# render 'follow_form' if current_user.present? %>
+  
+  
+  <% if @user.banner.attached? %>
     <%= image_tag @user.banner, style:'width:1500px; height:400px'%>
   <% end %>
 
@@ -7,7 +9,7 @@
     <%= image_tag @user.image, class: "img-fluid img-avatar rounded-circle ",  style:'width:200px; height:200px' %>
   <% end %>
 
-  <%= button_to 'FOLLOW', root_path, method: :get %>
+<%= render partial: "follow_form", locals: { user: @user } %>
 
 <div class='text-center'>
   <h1>Name is: <%=@user.name %></h1>
@@ -17,5 +19,9 @@
 
   <h1>Edit your profile <%= button_to "Edit Profile ", edit_user_path(current_user), method: :get, class: 'btn btn-outline-info' %></h1>
 </div>
+
+<section class="stats">
+  <%= render 'shared/stats' %>
+</section>
 
 

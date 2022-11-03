@@ -1,17 +1,47 @@
-<div class="">
-  <h1 class="fs-2 fw-bold">
+<div class="card border border-dark border-1">
+  <div class="card-body">
 
-  <%= link_to blurb.user.name, blurb.user, class: 'nav-link' %>
+    <%= link_to blurb.user.username, blurb.user, class: 'nav-link' %>
 
-  <% if blurb.picture.attached? %>          
-    <%= image_tag(blurb.picture, style:'width:1500px; height:400px' ) %>
-  <% end %> 
+    <%# --------------------ADD IMAGE------------------------- %>
+    <% if blurb.picture.attached? %>          
+      <%= image_tag(blurb.picture, style:'width:400px; height:300px' ) %>
+    <% end %> 
 
-  <p class="post fs-4"> BLURBER:<%= blurb.body %></p>
+    <div class="">
+      <p class="fs-5"> BLURBER:<%= blurb.body %></p>
+    </div>
+    <%# ---------------------BLURB POST------------------------- %>
+    <% if  blurb.body %>
+      <%= button_to " Discard ", blurb_path(blurb), method: :delete, class: 'btn btn-outline-danger' %>
+      <%= button_to "COMMENT", new_blurb_comment_path(blurb), method: :get, class: "btn btn-outline-info" %>
 
- <% if  blurb.body%>
-  <%= button_to " Discard ", blurb_path(blurb), method: :delete, class: 'btn btn-outline-danger' %>
-  <%= button_to "COMMENT", new_comment_path, method: :get, class: "btn btn-outline-info" %>
- <% end%>
+
+      <%# ---------------------LIKE FUNCTION------------------------- %>
+      <p><%= blurb.likes.count %> </p>
+
+      <% like = blurb.like_for_user(current_user) %>
+      <% if like %>
+        <%= button_to 'unlike', blurb_like_path(blurb, like), method: :delete %>
+      <% else %>
+        <%= button_to 'like', blurb_likes_path(blurb), method: :post %>
+      <% end %>
+    <% end %>
+
+
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(blurb.created_at) %> ago.
+    </span>
+
+    <% if blurb.comments.any?  %>
+
+      <% blurb.comments.each do |comment| %>
+        <p class='text-uppercase'>Comments:</p>
+        <h2 class='fs-5 fw-bold'> <%= comment.user.name %> </h2>
+        <p class='fs-6'><%= comment.bloob %></p>
+      <% end %>
+    <% end %>
+
+  </div>
 </div>
 

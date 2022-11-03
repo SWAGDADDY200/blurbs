@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_18_204306) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_01_232230) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -57,9 +57,36 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_18_204306) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.integer "blurb_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.index ["blurb_id"], name: "index_comments_on_blurb_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "blurb_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blurb_id"], name: "index_likes_on_blurb_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.integer "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,4 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_18_204306) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blurbs", "users"
+  add_foreign_key "comments", "blurbs"
+  add_foreign_key "likes", "blurbs"
+  add_foreign_key "likes", "users"
 end

@@ -1,0 +1,16 @@
+<h1>Would you like to add a comment to <%= @blurb.user.username %> Blurb</h1>
+<div class="btn-toolbar  my-3 ">
+<%= button_to "Comment on the post", new_blurb_comment_path(@blurb), method: :get, class: "btn btn-outline-dark" %><br>
+<%= button_to 'Home', root_path, method: :get, class:'btn btn-outline-primary'%>
+</div>
+
+
+      <p class='text-uppercase'>Comments:</p>
+
+<% if @blurb.comments.any?  %>
+
+    <% @blurb.comments.each do |comment| %>
+      <h2 class='fs-5 fw-bold'> <%= comment.user.name %> </h2>
+      <p class='fs-6'><%= comment.bloob %></p>
+    <% end %>
+<% end %>

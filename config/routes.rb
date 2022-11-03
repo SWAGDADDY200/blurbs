@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
-  resources :comments
-  
-  
-  resources :blurbs
 
+  resources :blurbs do
+    resources :comments
+    resources :likes
+  end
 
   get 'sessions/new'
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
-  resources :comments
+  resources :relationships, only: [:create, :destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

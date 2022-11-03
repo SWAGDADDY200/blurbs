@@ -1,7 +1,0 @@
-  <%= form_with(model: critique, url: blurb_critiques_path(critique.blurb)) do |i| %>
-
-  
-  <div class="form-input">
-    <%= i.label :comment %>
-    <%= i.rich_text_area :comment, class: 'form-control', placeholder: "Write a comment"%>
-  </div>

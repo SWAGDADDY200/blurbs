@@ -1,4 +1,4 @@
-<%= form_with(model: comment) do |i| %>
+<%= form_with(model: comment, url: blurb_comments_path(comment.blurb)) do |i| %>
 
   <div class="form-input">
     <%= i.label :bloob %>

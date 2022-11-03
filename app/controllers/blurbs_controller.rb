@@ -5,7 +5,6 @@ class BlurbsController < ApplicationController
 
   def create
     @blurb = current_user.blurbs.new(blurb_params)
-
     if @blurb.save
       redirect_to blurbs_path, info: "Post was successfully created"
     else
@@ -27,14 +26,12 @@ class BlurbsController < ApplicationController
   def update
     @blurb = current_user.blurbs.find(params[:id])
 
-    if @blurb.update(post_params)
+    if @blurb.update(blurb_params)
       redirect_to @blurb, notice: "Post was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
   end
-
-
 
   def show
   end
@@ -62,7 +59,7 @@ class BlurbsController < ApplicationController
   def set_post
     @blurb = Blurb.find(params[:id])
   end
-  
+
   def require_author
     redirect_to(root_path) unless @blurb.user == current_user
   end

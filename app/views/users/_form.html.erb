@@ -1,5 +1,5 @@
 <%= form_with(model: user) do |f| %>
-
+  <%= render 'shared/error_messages' %>
 
   <div class="form-input my-3">
     <%= f.label :name %>

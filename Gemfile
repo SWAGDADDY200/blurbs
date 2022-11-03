@@ -58,9 +58,11 @@ group :development do
   gem 'pry-byebug', '~> 3.9'
   gem "rspec-rails", "~> 6.0.0.rc1"
   gem 'htmlbeautifier'
-
+  gem 'carrierwave'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
+  gem 'will_paginate', '~> 3.3'
+  gem 'pg_search'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
