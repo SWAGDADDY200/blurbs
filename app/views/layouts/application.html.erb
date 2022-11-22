@@ -38,6 +38,12 @@
                 <%= link_to 'Sign up', new_user_path, method: :get, class:'nav-link mx-3' %>
               <% end %>
               <%= link_to 'Home', root_path, method: :get, class:'nav-link mx-3'%>
+
+              <%= form_tag(searches_path, method: :get) do %>
+                <%= text_field_tag(:search, params[:name]) %>
+                <%= submit_tag ('Search') %>
+              <% end %>
+
             </div>
           </div>
         </div>

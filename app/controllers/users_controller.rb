@@ -3,8 +3,12 @@ class UsersController < ApplicationController
   # before_action :authorize_user, only: [:edit, :update, :destroy]
   def index
     @users = User.all
+    @results = PgSearch.multisearch(params["search"])
 
     @user = current_user
+    # @users = User.search(params[:search])
+    # @user = PgSearch.multisearch(params["name"])
+
 
   end
 
@@ -21,7 +25,6 @@ class UsersController < ApplicationController
 
   end
 
-  
   def create
     @user = User.new(user_params)
     if @user.save

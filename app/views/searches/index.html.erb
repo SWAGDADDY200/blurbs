@@ -1,0 +1,19 @@
+Index for search  
+
+<br>
+
+<% if @results.any?%>
+  <% @results.each do |result| %>
+    <%# <%= @results.inspect %> 
+    <%= result.content %>
+    <br>
+    <%= result.inspect %>
+    <%= result.id %>
+    <%= result.searchable.name %>
+  <% end %>
+
+<% else %>
+  <p>Sorry no reuslts here </p>
+
+<% end %>
+

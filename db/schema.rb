@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_01_232230) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_22_230253) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "fuzzystrmatch"
+  enable_extension "pg_trgm"
+  enable_extension "plpgsql"
+
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -18,6 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_232230) do
     t.bigint "record_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "/"
+    t.text "plain_text_body"
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
@@ -50,14 +57,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_232230) do
   end
 
   create_table "blurbs", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_blurbs_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "blurb_id", null: false
+    t.bigint "blurb_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -65,8 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_232230) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "blurb_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "blurb_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["blurb_id"], name: "index_likes_on_blurb_id"
@@ -76,7 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_232230) do
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
-    t.integer "searchable_id"
+    t.bigint "searchable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"

@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+
+  include PgSearch::Model
+  multisearchable against: [:name, :username]
+  
   validates :name, presence: true, length: { minimum: 1, maximum: 16 }
   EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: EMAIL_FORMAT }, uniqueness: true
@@ -6,7 +10,6 @@ class User < ApplicationRecord
   before_save { self.email = email.downcase }
 
   has_many :blurbs, dependent: :destroy
-
   has_many :comments, dependent: :destroy
 
   has_secure_password
@@ -43,6 +46,5 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  include PgSearch::Model
-  multisearchable against: [:name, :username]
 end
+
