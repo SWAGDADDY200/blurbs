@@ -10,6 +10,11 @@
     <%= b.submit 'Add Post', class: "btn btn-outline-success mb-5 mt-5" %>
   </div>
 
+  <div class="field">
+    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= f.text_field :tag_list %>
+  </div>
+
   <div class="field mt-5">
     <%= b.label :picture %>
     <p>Add pictures here</p><%= b.file_field :picture %>

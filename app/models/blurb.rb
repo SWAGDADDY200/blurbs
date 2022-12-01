@@ -1,4 +1,5 @@
 class Blurb < ApplicationRecord
+  
   ActiveSupport.on_load :action_text_rich_text do
     include PgSearch::Model
     multisearchable against: :body
@@ -27,4 +28,6 @@ class Blurb < ApplicationRecord
       likes.find_by_user_id(liking_user.id)
     end
   end
+  attr_accessible :body, :name, :tag_list
+  acts_as_taggable
 end
